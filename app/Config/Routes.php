@@ -16,7 +16,7 @@ if (file_exists(SYSTEMPATH . 'Config/Routes.php'))
  * --------------------------------------------------------------------
  */
 $routes->setDefaultNamespace('App\Controllers');
-$routes->setDefaultController('Home');
+$routes->setDefaultController('Work');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
@@ -30,8 +30,13 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Home::index');
-
+//$routes->get('/', 'Home::index');
+//$routes->presenter('api/v1', ['controller' => 'Work']);
+$routes->get('api/v1/show',    		  'Work::index');
+$routes->get('api/v1/show/(:num)',    'Work::show/$1');
+$routes->get('api/v1/delete/(:num)',  'Work::delete/$1');
+$routes->post('api/v1/create',        'Work::create');
+$routes->post('api/v1/update/(:num)', 'Work::update/$1');
 /**
  * --------------------------------------------------------------------
  * Additional Routing
